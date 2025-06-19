@@ -5,6 +5,7 @@ import HomeScreen from './components/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DoctorAppointments from './components/DoctorAppointment';
+import VoiceAssistantScreen from './components/VoiceAssistantScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,11 @@ export default function App() {
           name="DoctorAppointments" 
           component={DoctorAppointments} 
           options={{ title: 'Doctor Appointments' }} 
+        />
+        <Stack.Screen 
+          name="VoiceAssistantScreen" 
+          component={VoiceAssistantScreen} 
+          options={{ title: 'Voice Assistant Screen' }} 
         />
       </Stack.Navigator>
       <StatusBar style="auto" />  

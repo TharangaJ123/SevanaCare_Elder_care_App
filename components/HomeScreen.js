@@ -1,12 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Linking, Alert } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
 
   const navigation = useNavigation();
-    
+  
   const handleEmergencyPress = () => {
     Alert.alert(
       "Emergency Assistance",
@@ -19,9 +20,7 @@ const HomeScreen = () => {
         { 
           text: "Call & Share Info", 
           onPress: () => {
-            // This would actually call emergency services
             Linking.openURL('tel:911');
-            // Here you would also implement sharing location/medical info
             Alert.alert("Emergency contacted", "Your location and medical info have been shared with responders");
           } 
         }
@@ -52,7 +51,6 @@ const HomeScreen = () => {
 
           <TouchableOpacity 
             style={[styles.actionButton, styles.emergencyButton]}
-            onPress={() => {/* Navigate to emergency contacts */}}
           >
             <Ionicons name="medkit" size={32} color="#E53E3E" />
             <Text style={styles.actionButtonText}>Emergency Contacts</Text>
@@ -64,8 +62,17 @@ const HomeScreen = () => {
             style={[styles.actionButton, styles.appointmentButton]}
             onPress={() => {navigation.navigate('DoctorAppointments')}}
           >
-            <MaterialIcons name="appointments" size={32} color="#4A90E2" />
-            <Text style={styles.actionButtonText}>doctor Appointments</Text>
+            <FontAwesome5 name="calendar-check" size={32} color="#805AD5" />
+            <Text style={styles.actionButtonText}>Doctor Appointments</Text>
+          </TouchableOpacity>
+
+          {/* Voice Assistant Button */}
+          <TouchableOpacity 
+            style={[styles.actionButton, styles.voiceAssistantButton]}
+            onPress={() => {navigation.navigate('VoiceAssistantScreen')}}
+          >
+            <MaterialCommunityIcons name="robot-happy" size={32} color="#38B2AC" />
+            <Text style={styles.actionButtonText}>Voice Assistant</Text>
           </TouchableOpacity>
         </View>
 
@@ -151,9 +158,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
   },
   medicationButton: {
     borderTopWidth: 4,
@@ -165,13 +172,23 @@ const styles = StyleSheet.create({
   },
   appointmentButton: {
     borderTopWidth: 4,
-    borderTopColor: '#E53E3E',
+    borderTopColor: '#805AD5',
+  },
+  voiceAssistantButton: {
+    borderTopWidth: 4,
+    borderTopColor: '#38B2AC',
+    shadowColor: '#38B2AC',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
   },
   actionButtonText: {
     marginTop: 8,
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '600',
     color: '#2D3748',
+    textAlign: 'center',
   },
   emergencyContainer: {
     backgroundColor: '#FFF5F5',
@@ -226,9 +243,9 @@ const styles = StyleSheet.create({
     padding: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
   },
   medicationItem: {
     flexDirection: 'row',
